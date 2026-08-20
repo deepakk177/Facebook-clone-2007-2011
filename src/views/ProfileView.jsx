@@ -4,7 +4,7 @@ import { db } from '../services/db';
 import { Sidebar } from '../components/Sidebar';
 import { PostPublisher } from '../components/PostPublisher';
 import { PostCard } from '../components/PostCard';
-import { UserPlus, UserCheck, Hand, Edit2, MessageSquare, Save, X, Camera, Check } from 'lucide-react';
+import { UserPlus, UserCheck, Hand, Edit2, MessageSquare, Save, X, Camera, Check, Plus, Upload } from 'lucide-react';
 
 export const ProfileView = ({ userId }) => {
   const {
@@ -14,12 +14,18 @@ export const ProfileView = ({ userId }) => {
     acceptFriendRequest,
     pokeUser,
     updateUserProfile,
-    navigateTo
+    navigateTo,
+    refreshDb
   } = useApp();
 
   const [activeTab, setActiveTab] = useState('wall'); // wall, info, photos, friends
   const [isEditingInfo, setIsEditingInfo] = useState(false);
+  const [showAddPhotoModal, setShowAddPhotoModal] = useState(false);
   const [selectedPhotoObj, setSelectedPhotoObj] = useState(null);
+
+  // New Photo Form State
+  const [newPhotoUrl, setNewPhotoUrl] = useState('');
+  const [newPhotoCaption, setNewPhotoCaption] = useState('');
 
   const profileUser = db.getUser(userId || activeUserId) || activeUser;
   const isSelf = profileUser.id === activeUserId;
@@ -43,6 +49,28 @@ export const ProfileView = ({ userId }) => {
     e.preventDefault();
     updateUserProfile(profileUser.id, editForm);
     setIsEditingInfo(false);
+  };
+
+  const handleFileUploadForAlbum = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setNewPhotoUrl(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleAddPhotoSubmit = (e) => {
+    e.preventDefault();
+    if (!newPhotoUrl) return;
+
+    db.addPhoto(profileUser.id, newPhotoUrl, newPhotoCaption.trim() || 'New Photo');
+    setNewPhotoUrl('');
+    setNewPhotoCaption('');
+    setShowAddPhotoModal(false);
+    refreshDb();
   };
 
   const wallPosts = db.getPosts(profileUser.id);
@@ -346,7 +374,15 @@ export const ProfileView = ({ userId }) => {
           {/* TAB CONTENT: PHOTOS */}
           {activeTab === 'photos' && (
             <div className="fb-widget-box">
-              <div className="fb-widget-title">PHOTOS & ALBUMS FOR {profileUser.name.toUpperCase()}</div>
+              <div className="fb-widget-title" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <span>PHOTOS & ALBUMS FOR {profileUser.name.toUpperCase()}</span>
+                {isSelf && (
+                  <button className="fb-btn fb-btn-success" onClick={() => setShowAddPhotoModal(true)}>
+                    <Plus size={11} /> Add Photo
+                  </button>
+                )}
+              </div>
+
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px', marginTop: '12px' }}>
                 {photoList.map((photoObj, i) => (
                   <div
@@ -388,6 +424,72 @@ export const ProfileView = ({ userId }) => {
           )}
         </main>
       </div>
+
+      {/* Add Photo Modal */}
+      {showAddPhotoModal && (
+        <div className="fb-modal-overlay" onClick={() => setShowAddPhotoModal(false)}>
+          <div className="fb-modal-content" onClick={e => e.stopPropagation()} style={{ width: '500px' }}>
+            <div className="fb-modal-header">
+              <span>Add New Photo to Album</span>
+              <a onClick={() => setShowAddPhotoModal(false)} style={{ color: '#fff' }}>✕</a>
+            </div>
+            <form onSubmit={handleAddPhotoSubmit}>
+              <div className="fb-modal-body" style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                <div>
+                  <label style={{ fontWeight: 'bold', fontSize: '11px', display: 'block', marginBottom: '4px' }}>
+                    Select Image File from Computer:
+                  </label>
+                  <label className="fb-btn fb-btn-default" style={{ cursor: 'pointer' }}>
+                    <Upload size={12} /> Browse Image File...
+                    <input type="file" accept="image/*" onChange={handleFileUploadForAlbum} style={{ display: 'none' }} />
+                  </label>
+                </div>
+
+                <div>
+                  <label style={{ fontWeight: 'bold', fontSize: '11px', display: 'block', marginBottom: '4px' }}>
+                    Or Enter Image URL:
+                  </label>
+                  <input
+                    type="text"
+                    className="fb-form-control"
+                    placeholder="https://... or Data URL"
+                    value={newPhotoUrl.startsWith('data:') ? '[Local File Selected]' : newPhotoUrl}
+                    onChange={e => setNewPhotoUrl(e.target.value)}
+                  />
+                </div>
+
+                <div>
+                  <label style={{ fontWeight: 'bold', fontSize: '11px', display: 'block', marginBottom: '4px' }}>
+                    Photo Caption:
+                  </label>
+                  <input
+                    type="text"
+                    className="fb-form-control"
+                    placeholder="e.g. Summer Vacation, Class Project..."
+                    value={newPhotoCaption}
+                    onChange={e => setNewPhotoCaption(e.target.value)}
+                  />
+                </div>
+
+                {newPhotoUrl && (
+                  <div style={{ textAlign: 'center', marginTop: '6px' }}>
+                    <img src={newPhotoUrl} style={{ maxHeight: '160px', borderRadius: '3px', border: '1px solid #ccc' }} alt="Preview" />
+                  </div>
+                )}
+              </div>
+
+              <div className="fb-modal-footer">
+                <button type="submit" className="fb-btn fb-btn-success" disabled={!newPhotoUrl}>
+                  <Upload size={11} /> Upload to Album
+                </button>
+                <button type="button" className="fb-btn fb-btn-default" onClick={() => setShowAddPhotoModal(false)}>
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
 
       {/* Photo Lightbox Modal */}
       {selectedPhotoObj && (

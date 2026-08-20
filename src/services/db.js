@@ -438,6 +438,17 @@ class DatabaseService {
     return null;
   }
 
+  addPhoto(userId, photoUrl, caption = 'New Photo') {
+    const user = this.getUser(userId);
+    if (user) {
+      if (!user.photos) user.photos = [];
+      user.photos.unshift({ url: photoUrl, caption });
+      this.save();
+      return user.photos;
+    }
+    return [];
+  }
+
   // --- Posts CRUD ---
   getPosts(filterUserId = null) {
     let posts = [...this.data.posts];
@@ -459,6 +470,11 @@ class DatabaseService {
       comments: []
     };
     this.data.posts.unshift(newPost);
+
+    // Also auto-add media to user's photo album if photo attached!
+    if (mediaUrl) {
+      this.addPhoto(authorId, mediaUrl, content.slice(0, 30) || 'Uploaded Photo');
+    }
 
     if (!targetUserId) {
       const author = this.getUser(authorId);
