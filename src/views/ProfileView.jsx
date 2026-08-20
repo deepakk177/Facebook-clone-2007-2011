@@ -19,7 +19,7 @@ export const ProfileView = ({ userId }) => {
 
   const [activeTab, setActiveTab] = useState('wall'); // wall, info, photos, friends
   const [isEditingInfo, setIsEditingInfo] = useState(false);
-  const [selectedPhoto, setSelectedPhoto] = useState(null);
+  const [selectedPhotoObj, setSelectedPhotoObj] = useState(null);
 
   const profileUser = db.getUser(userId || activeUserId) || activeUser;
   const isSelf = profileUser.id === activeUserId;
@@ -30,8 +30,9 @@ export const ProfileView = ({ userId }) => {
   // Edit form state
   const [editForm, setEditForm] = useState({
     bio: profileUser.bio || '',
-    hometown: profileUser.hometown || '',
+    age: profileUser.age || 31,
     work: profileUser.work || '',
+    phone: profileUser.phone || '',
     education: profileUser.education || '',
     relationship: profileUser.relationship || '',
     interests: profileUser.interests || '',
@@ -47,20 +48,17 @@ export const ProfileView = ({ userId }) => {
   const wallPosts = db.getPosts(profileUser.id);
   const profileFriends = profileUser.friends.map(id => db.getUser(id)).filter(Boolean);
 
+  // Parse photos with captions
   const photoList = (profileUser.photos && profileUser.photos.length > 0)
-    ? profileUser.photos
+    ? profileUser.photos.map(p => typeof p === 'string' ? { url: p, caption: '' } : p)
     : [
-        '/assets/imgs/1.jpg',
-        '/assets/imgs/2.jpg',
-        '/assets/imgs/3.jpg',
-        '/assets/imgs/4.jpg',
-        '/assets/imgs/5.jpg'
+        { url: '/assets/imgs/1.jpg', caption: 'Photo 1' }
       ];
 
   const handleSetProfilePic = (imgUrl) => {
     if (confirm('Set this photo as your profile picture?')) {
       updateUserProfile(profileUser.id, { avatar: imgUrl });
-      setSelectedPhoto(null);
+      setSelectedPhotoObj(null);
     }
   };
 
@@ -95,7 +93,7 @@ export const ProfileView = ({ userId }) => {
               <div className="fb-profile-details">
                 <div className="fb-profile-name">{profileUser.name}</div>
                 <div style={{ fontSize: '11px', color: '#666', marginBottom: '8px' }}>
-                  {profileUser.network} • {profileUser.hometown}
+                  {profileUser.work} • Age {profileUser.age}
                 </div>
 
                 {/* Status bubble */}
@@ -175,10 +173,11 @@ export const ProfileView = ({ userId }) => {
                 <div className="fb-widget-box">
                   <div className="fb-widget-title">INFORMATION</div>
                   <ul className="fb-profile-meta-list">
-                    <li><strong>Networks:</strong> {profileUser.network}</li>
-                    <li><strong>Hometown:</strong> {profileUser.hometown}</li>
+                    <li><strong>Age:</strong> {profileUser.age}</li>
+                    <li><strong>Occupation:</strong> {profileUser.work}</li>
+                    <li><strong>Phone:</strong> {profileUser.phone}</li>
                     <li><strong>Relationship:</strong> {profileUser.relationship}</li>
-                    <li><strong>Work:</strong> {profileUser.work}</li>
+                    <li><strong>Education:</strong> {profileUser.education}</li>
                   </ul>
                   <a style={{ fontSize: '10px', marginTop: '6px', display: 'inline-block' }} onClick={() => setActiveTab('info')}>
                     View Full Info »
@@ -247,28 +246,28 @@ export const ProfileView = ({ userId }) => {
 
                   <div className="fb-form-row">
                     <div style={{ flex: 1 }}>
-                      <label style={{ fontWeight: 'bold', fontSize: '11px' }}>Hometown:</label>
+                      <label style={{ fontWeight: 'bold', fontSize: '11px' }}>Age:</label>
                       <input
-                        type="text"
+                        type="number"
                         className="fb-form-control"
-                        value={editForm.hometown}
-                        onChange={(e) => setEditForm({ ...editForm, hometown: e.target.value })}
+                        value={editForm.age}
+                        onChange={(e) => setEditForm({ ...editForm, age: parseInt(e.target.value) || 0 })}
                       />
                     </div>
                     <div style={{ flex: 1 }}>
-                      <label style={{ fontWeight: 'bold', fontSize: '11px' }}>Relationship Status:</label>
+                      <label style={{ fontWeight: 'bold', fontSize: '11px' }}>Phone Number:</label>
                       <input
                         type="text"
                         className="fb-form-control"
-                        value={editForm.relationship}
-                        onChange={(e) => setEditForm({ ...editForm, relationship: e.target.value })}
+                        value={editForm.phone}
+                        onChange={(e) => setEditForm({ ...editForm, phone: e.target.value })}
                       />
                     </div>
                   </div>
 
                   <div className="fb-form-row">
                     <div style={{ flex: 1 }}>
-                      <label style={{ fontWeight: 'bold', fontSize: '11px' }}>Work:</label>
+                      <label style={{ fontWeight: 'bold', fontSize: '11px' }}>Occupation / Work:</label>
                       <input
                         type="text"
                         className="fb-form-control"
@@ -283,6 +282,18 @@ export const ProfileView = ({ userId }) => {
                         className="fb-form-control"
                         value={editForm.education}
                         onChange={(e) => setEditForm({ ...editForm, education: e.target.value })}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="fb-form-row">
+                    <div style={{ flex: 1 }}>
+                      <label style={{ fontWeight: 'bold', fontSize: '11px' }}>Relationship Status:</label>
+                      <input
+                        type="text"
+                        className="fb-form-control"
+                        value={editForm.relationship}
+                        onChange={(e) => setEditForm({ ...editForm, relationship: e.target.value })}
                       />
                     </div>
                   </div>
@@ -308,17 +319,17 @@ export const ProfileView = ({ userId }) => {
                 </form>
               ) : (
                 <div>
-                  <div className="fb-widget-title" style={{ fontSize: '13px' }}>BASIC INFORMATION</div>
+                  <div className="fb-widget-title" style={{ fontSize: '13px' }}>BASIC & CONTACT INFORMATION</div>
                   <ul className="fb-profile-meta-list" style={{ fontSize: '12px', lineHeight: '1.8' }}>
                     <li><strong>Full Name:</strong> {profileUser.name}</li>
-                    <li><strong>Network:</strong> {profileUser.network}</li>
-                    <li><strong>Hometown:</strong> {profileUser.hometown}</li>
+                    <li><strong>Age:</strong> {profileUser.age} years old</li>
+                    <li><strong>Phone Number:</strong> {profileUser.phone}</li>
                     <li><strong>Relationship:</strong> {profileUser.relationship}</li>
                   </ul>
 
-                  <div className="fb-widget-title" style={{ fontSize: '13px', marginTop: '15px' }}>WORK & EDUCATION</div>
+                  <div className="fb-widget-title" style={{ fontSize: '13px', marginTop: '15px' }}>OCCUPATION & EDUCATION</div>
                   <ul className="fb-profile-meta-list" style={{ fontSize: '12px', lineHeight: '1.8' }}>
-                    <li><strong>Work:</strong> {profileUser.work}</li>
+                    <li><strong>Occupation:</strong> {profileUser.work}</li>
                     <li><strong>Education:</strong> {profileUser.education}</li>
                   </ul>
 
@@ -337,16 +348,16 @@ export const ProfileView = ({ userId }) => {
             <div className="fb-widget-box">
               <div className="fb-widget-title">PHOTOS & ALBUMS FOR {profileUser.name.toUpperCase()}</div>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px', marginTop: '12px' }}>
-                {photoList.map((imgUrl, i) => (
+                {photoList.map((photoObj, i) => (
                   <div
                     key={i}
                     style={{ border: '1px solid #ccc', padding: '6px', background: '#fff', cursor: 'pointer', position: 'relative' }}
-                    onClick={() => setSelectedPhoto(imgUrl)}
+                    onClick={() => setSelectedPhotoObj(photoObj)}
                   >
-                    <img src={imgUrl} style={{ width: '100%', height: '140px', objectFit: 'cover' }} alt="" />
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '5px' }}>
-                      <span style={{ fontSize: '10px', color: '#666', fontWeight: 'bold' }}>
-                        Photo {i + 1} {imgUrl === profileUser.avatar ? '(Profile Picture)' : ''}
+                    <img src={photoObj.url} style={{ width: '100%', height: '140px', objectFit: 'contain', background: '#f0f2f5' }} alt="" />
+                    <div style={{ marginTop: '5px', textAlign: 'center' }}>
+                      <span style={{ fontSize: '11px', color: '#3b5998', fontWeight: 'bold' }}>
+                        {photoObj.caption || `Photo ${i + 1}`}
                       </span>
                     </div>
                   </div>
@@ -362,12 +373,12 @@ export const ProfileView = ({ userId }) => {
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '10px', marginTop: '10px' }}>
                 {profileFriends.map(friend => (
                   <div key={friend.id} style={{ display: 'flex', gap: '10px', padding: '8px', border: '1px solid #e5e5e5', background: '#fafafa' }}>
-                    <img src={friend.avatar} style={{ width: 45, height: 45, objectFit: 'cover' }} alt="" />
+                    <img src={friend.avatar} style={{ width: 45, height: 45, objectFit: 'contain', background: '#fff' }} alt="" />
                     <div>
                       <a style={{ fontWeight: 'bold', fontSize: '12px' }} onClick={() => navigateTo('profile', friend.id)}>
                         {friend.name}
                       </a>
-                      <div style={{ fontSize: '10px', color: '#666' }}>{friend.network}</div>
+                      <div style={{ fontSize: '10px', color: '#666' }}>{friend.work}</div>
                       <div style={{ fontSize: '9px', color: '#888' }}>{friend.friends.length} friends</div>
                     </div>
                   </div>
@@ -379,23 +390,28 @@ export const ProfileView = ({ userId }) => {
       </div>
 
       {/* Photo Lightbox Modal */}
-      {selectedPhoto && (
-        <div className="fb-modal-overlay" onClick={() => setSelectedPhoto(null)}>
+      {selectedPhotoObj && (
+        <div className="fb-modal-overlay" onClick={() => setSelectedPhotoObj(null)}>
           <div className="fb-modal-content" onClick={e => e.stopPropagation()} style={{ width: '640px' }}>
             <div className="fb-modal-header">
-              <span>Photo Viewer — {profileUser.name}</span>
-              <a onClick={() => setSelectedPhoto(null)} style={{ color: '#fff' }}>✕</a>
+              <span>{selectedPhotoObj.caption || 'Photo Viewer'} — {profileUser.name}</span>
+              <a onClick={() => setSelectedPhotoObj(null)} style={{ color: '#fff' }}>✕</a>
             </div>
             <div className="fb-modal-body" style={{ textAlign: 'center', background: '#111', padding: '20px' }}>
-              <img src={selectedPhoto} style={{ maxWidth: '100%', maxHeight: '500px', objectFit: 'contain', border: '1px solid #333' }} alt="" />
+              <img src={selectedPhotoObj.url} style={{ maxWidth: '100%', maxHeight: '500px', objectFit: 'contain', border: '1px solid #333' }} alt="" />
+              {selectedPhotoObj.caption && (
+                <div style={{ color: '#fff', marginTop: '10px', fontSize: '13px', fontWeight: 'bold' }}>
+                  {selectedPhotoObj.caption}
+                </div>
+              )}
             </div>
             <div className="fb-modal-footer">
-              {isSelf && selectedPhoto !== profileUser.avatar && (
-                <button className="fb-btn fb-btn-primary" onClick={() => handleSetProfilePic(selectedPhoto)}>
+              {isSelf && selectedPhotoObj.url !== profileUser.avatar && (
+                <button className="fb-btn fb-btn-primary" onClick={() => handleSetProfilePic(selectedPhotoObj.url)}>
                   <Check size={11} /> Make Profile Picture
                 </button>
               )}
-              <button className="fb-btn fb-btn-default" onClick={() => setSelectedPhoto(null)}>Close</button>
+              <button className="fb-btn fb-btn-default" onClick={() => setSelectedPhotoObj(null)}>Close</button>
             </div>
           </div>
         </div>

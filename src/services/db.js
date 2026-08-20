@@ -1,6 +1,6 @@
 // Facebook 2007-2011 Client Database Service with Persistence & Seed Data
 
-const DB_KEY = 'FB_2007_2011_DATABASE_V3';
+const DB_KEY = 'FB_2007_2011_DATABASE_V5';
 
 const INITIAL_SEED_USERS = [
   {
@@ -10,20 +10,20 @@ const INITIAL_SEED_USERS = [
     lastName: 'Sen',
     email: 'meera.sen@facebook.com',
     avatar: '/assets/imgs/meera_4.jpg', // 4th picture set as profile picture
-    status: 'is reviewing class lesson plans & field trip photos.',
-    network: 'Delhi University / Educator Network',
-    hometown: 'Kolkata, India',
+    status: 'is taking a quick lunch break on the campus balcony.',
+    age: 31,
+    work: 'High School Teacher',
+    phone: '+91 987654321',
     relationship: 'In a relationship',
-    work: 'Senior Education Specialist & Teacher',
     education: 'Delhi University (B.Ed & M.A. Literature)',
     bio: 'Passionate educator, literary enthusiast, and student mentor.',
     interests: 'Literature, Teaching, School Field Trips, Indian Art & History',
     photos: [
-      '/assets/imgs/meera_1.jpg',
-      '/assets/imgs/meera_2.jpg',
-      '/assets/imgs/meera_3.jpg',
-      '/assets/imgs/meera_4.jpg',
-      '/assets/imgs/meera_5.jpg'
+      { url: '/assets/imgs/meera_1.jpg', caption: 'Family' },
+      { url: '/assets/imgs/meera_2.jpg', caption: 'Classes Started' },
+      { url: '/assets/imgs/meera_3.jpg', caption: 'My School' },
+      { url: '/assets/imgs/meera_4.jpg', caption: 'Lunch Break' },
+      { url: '/assets/imgs/meera_5.jpg', caption: 'Portrait' }
     ],
     friends: ['user_zuck', 'user_akshima', 'user_eduardo'],
     pendingRequests: []
@@ -34,16 +34,18 @@ const INITIAL_SEED_USERS = [
     firstName: 'Meera',
     lastName: 'Sen',
     email: 'meera.architect@facebook.com',
-    avatar: '/assets/imgs/meera_5.jpg',
+    avatar: '/assets/imgs/1.jpg',
     status: 'is working on urban restoration projects.',
-    network: 'Kolkata Network',
-    hometown: 'Kolkata, India',
-    relationship: 'Single',
+    age: 29,
     work: 'Senior Architect at Urban Studio',
+    phone: '+91 981234567',
+    relationship: 'Single',
     education: 'Jadavpur University',
     bio: 'Designing sustainable urban living spaces.',
     interests: 'Architecture, Heritage Buildings, Sketching',
-    photos: ['/assets/imgs/meera_5.jpg'],
+    photos: [
+      { url: '/assets/imgs/1.jpg', caption: 'Architectural Sketch' }
+    ],
     friends: ['user_meera_sen'],
     pendingRequests: []
   },
@@ -53,16 +55,18 @@ const INITIAL_SEED_USERS = [
     firstName: 'Meera',
     lastName: 'Sen',
     email: 'meera.bio@facebook.com',
-    avatar: '/assets/imgs/meera_2.jpg',
+    avatar: '/assets/imgs/2.jpg',
     status: 'is in the lab analyzing molecular biology research.',
-    network: 'Mumbai Network',
-    hometown: 'Mumbai, India',
-    relationship: 'Married',
+    age: 34,
     work: 'Medical Research Scholar',
+    phone: '+91 976543210',
+    relationship: 'Married',
     education: 'IIT Bombay',
     bio: 'Biomedical researcher exploring health innovations.',
     interests: 'Genomics, Molecular Biology, Classical Music',
-    photos: ['/assets/imgs/meera_2.jpg'],
+    photos: [
+      { url: '/assets/imgs/2.jpg', caption: 'Lab Setup' }
+    ],
     friends: [],
     pendingRequests: []
   },
@@ -72,16 +76,18 @@ const INITIAL_SEED_USERS = [
     firstName: 'Meera',
     lastName: 'Kapoor',
     email: 'meera.kapoor@facebook.com',
-    avatar: '/assets/imgs/2.jpg',
+    avatar: '/assets/imgs/3.jpg',
     status: 'is launching her new autumn fashion line!',
-    network: 'Delhi Network',
-    hometown: 'New Delhi, India',
-    relationship: 'Single',
+    age: 28,
     work: 'Fashion Designer & Stylist',
-    education: 'NIFT Delhi',
+    phone: '+91 989898989',
+    relationship: 'Single',
+    education: 'NIFT',
     bio: 'Creating sustainable fusion ethnic wear.',
     interests: 'Fashion, Textiles, Travel Photography',
-    photos: ['/assets/imgs/2.jpg'],
+    photos: [
+      { url: '/assets/imgs/3.jpg', caption: 'Design Studio' }
+    ],
     friends: ['user_akshima'],
     pendingRequests: []
   },
@@ -91,16 +97,18 @@ const INITIAL_SEED_USERS = [
     firstName: 'Meera',
     lastName: 'Roy',
     email: 'meera.roy@facebook.com',
-    avatar: '/assets/imgs/5.jpg',
+    avatar: '/assets/imgs/4.jpg',
     status: 'is deploying scalable backend microservices.',
-    network: 'Bangalore Network',
-    hometown: 'Bangalore, India',
-    relationship: 'In a relationship',
+    age: 32,
     work: 'Software Architect at Tech Global',
-    education: 'IISc Bangalore',
+    phone: '+91 912345678',
+    relationship: 'In a relationship',
+    education: 'IISc',
     bio: 'Passionate about cloud architecture and open source.',
     interests: 'Distributed Systems, Python, Trekking',
-    photos: ['/assets/imgs/5.jpg'],
+    photos: [
+      { url: '/assets/imgs/4.jpg', caption: 'Tech Conference' }
+    ],
     friends: ['user_dustin'],
     pendingRequests: []
   },
@@ -110,16 +118,18 @@ const INITIAL_SEED_USERS = [
     firstName: 'Meera',
     lastName: 'Deshmukh',
     email: 'meera.d@facebook.com',
-    avatar: '/assets/imgs/meera_1.jpg',
+    avatar: '/assets/imgs/5.jpg',
     status: 'is editing her latest investigative article.',
-    network: 'Pune Network',
-    hometown: 'Pune, India',
-    relationship: 'Married',
+    age: 35,
     work: 'Senior Journalist & Columnist',
-    education: 'Pune University',
+    phone: '+91 923456789',
+    relationship: 'Married',
+    education: 'University Department of Journalism',
     bio: 'Reporting on socio-economic developments and education.',
     interests: 'Journalism, Books, Social Policy',
-    photos: ['/assets/imgs/meera_1.jpg'],
+    photos: [
+      { url: '/assets/imgs/5.jpg', caption: 'Press Room' }
+    ],
     friends: [],
     pendingRequests: []
   },
@@ -129,16 +139,18 @@ const INITIAL_SEED_USERS = [
     firstName: 'Meera',
     lastName: 'Sharma',
     email: 'meera.sharma@facebook.com',
-    avatar: '/assets/imgs/meera_3.jpg',
-    status: 'is preparing for the national dance festival in Jaipur.',
-    network: 'Jaipur Network',
-    hometown: 'Jaipur, India',
-    relationship: 'Single',
+    avatar: '/assets/imgs/wall.jpg',
+    status: 'is preparing for the national dance festival.',
+    age: 27,
     work: 'Kathak Dancer & Choreographer',
-    education: 'Jaipur University',
-    bio: 'Promoting traditional Indian classical performing arts.',
+    phone: '+91 934567890',
+    relationship: 'Single',
+    education: 'Arts Academy',
+    bio: 'Promoting traditional classical performing arts.',
     interests: 'Kathak, Classical Music, Cultural Heritage',
-    photos: ['/assets/imgs/meera_3.jpg'],
+    photos: [
+      { url: '/assets/imgs/wall.jpg', caption: 'Stage Performance' }
+    ],
     friends: [],
     pendingRequests: []
   },
@@ -148,16 +160,18 @@ const INITIAL_SEED_USERS = [
     firstName: 'Meera',
     lastName: 'Nair',
     email: 'meera.nair@facebook.com',
-    avatar: '/assets/imgs/meera_4.jpg',
+    avatar: '/assets/imgs/globe.png',
     status: 'is wrapping up filming for her documentary.',
-    network: 'Kochi Network',
-    hometown: 'Kochi, Kerala',
-    relationship: 'In a relationship',
+    age: 33,
     work: 'Documentary Filmmaker',
-    education: 'FTII Pune',
+    phone: '+91 945678901',
+    relationship: 'In a relationship',
+    education: 'Film Institute',
     bio: 'Telling human stories through cinematic lens.',
     interests: 'Documentary, Cinema, Environmental Causes',
-    photos: ['/assets/imgs/meera_4.jpg'],
+    photos: [
+      { url: '/assets/imgs/globe.png', caption: 'Documentary Location' }
+    ],
     friends: [],
     pendingRequests: []
   },
@@ -169,13 +183,14 @@ const INITIAL_SEED_USERS = [
     email: 'zuck@facebook.com',
     avatar: '/assets/imgs/1.jpg',
     status: 'is building Facebook 2.0 with classic wall features!',
-    network: 'Harvard / Palo Alto',
-    hometown: 'Dobbs Ferry, New York',
-    relationship: 'In a relationship with Priscilla Chan',
+    age: 23,
     work: 'Founder and CEO at Facebook',
+    phone: '+1 650 555 0199',
+    relationship: 'In a relationship with Priscilla Chan',
     education: 'Harvard University (Computer Science & Psychology)',
     bio: "I'm trying to make the world more open and connected.",
     interests: 'Open Source, Information Flow, Artificial Intelligence, Fencing',
+    photos: [{ url: '/assets/imgs/1.jpg', caption: 'Palo Alto Office' }],
     friends: ['user_meera_sen', 'user_eduardo', 'user_sean', 'user_dustin'],
     pendingRequests: []
   },
@@ -187,13 +202,14 @@ const INITIAL_SEED_USERS = [
     email: 'eduardo@facebook.com',
     avatar: '/assets/imgs/2.jpg',
     status: 'is calculating investor equity splits.',
-    network: 'Harvard / Singapore',
-    hometown: 'São Paulo, Brazil',
-    relationship: 'Single',
+    age: 25,
     work: 'Co-founder & Business Manager',
+    phone: '+1 650 555 0188',
+    relationship: 'Single',
     education: 'Harvard University (Economics)',
     bio: 'Phoenix Club member, investor, and tech entrepreneur.',
     interests: 'Finance, Chess, Meteorology, Startup Investing',
+    photos: [{ url: '/assets/imgs/2.jpg', caption: 'Harvard Campus' }],
     friends: ['user_meera_sen', 'user_zuck', 'user_akshima'],
     pendingRequests: []
   },
@@ -205,13 +221,14 @@ const INITIAL_SEED_USERS = [
     email: 'sean@facebook.com',
     avatar: '/assets/imgs/3.jpg',
     status: "says 'A million dollars isn't cool. You know what's cool? A billion dollars.'",
-    network: 'Silicon Valley',
-    hometown: 'Herndon, Virginia',
-    relationship: 'It\'s Complicated',
+    age: 28,
     work: 'President at Facebook / Napster Founder',
+    phone: '+1 415 555 0177',
+    relationship: 'It\'s Complicated',
     education: 'Oakton High School',
     bio: 'Venture capitalist, music lover, and viral growth believer.',
     interests: 'Napster, Plaxo, Spotify, Virality, Philanthropy',
+    photos: [{ url: '/assets/imgs/3.jpg', caption: 'Silicon Valley' }],
     friends: ['user_zuck'],
     pendingRequests: []
   },
@@ -223,13 +240,14 @@ const INITIAL_SEED_USERS = [
     email: 'dustin@facebook.com',
     avatar: '/assets/imgs/4.jpg',
     status: 'is debugging PHP code late into the night.',
-    network: 'Harvard / San Francisco',
-    hometown: 'Gainesville, Florida',
-    relationship: 'In a relationship',
+    age: 23,
     work: 'Head of Engineering at Facebook',
+    phone: '+1 650 555 0166',
+    relationship: 'In a relationship',
     education: 'Harvard University',
     bio: 'Building scalable infrastructure for millions of students.',
     interests: 'Server Architecture, PHP, Asana, Ultimate Frisbee',
+    photos: [{ url: '/assets/imgs/4.jpg', caption: 'Server Room' }],
     friends: ['user_zuck'],
     pendingRequests: []
   },
@@ -241,13 +259,14 @@ const INITIAL_SEED_USERS = [
     email: 'akshima@facebook.com',
     avatar: '/assets/imgs/5.jpg',
     status: 'is loving the classic 2007 Facebook theme style!',
-    network: 'Stanford University',
-    hometown: 'New Delhi, India',
-    relationship: 'Single',
+    age: 26,
     work: 'UI/UX Designer',
+    phone: '+91 9811122233',
+    relationship: 'Single',
     education: 'Stanford University (Design)',
     bio: 'Designing nostalgic interfaces and web applications.',
     interests: 'Web Design, Pixel Art, Retro UI, Photography',
+    photos: [{ url: '/assets/imgs/5.jpg', caption: 'Design Showcase' }],
     friends: ['user_meera_sen', 'user_eduardo'],
     pendingRequests: ['user_zuck']
   }
@@ -258,21 +277,15 @@ const INITIAL_SEED_POSTS = [
     id: 'post_meera_1',
     authorId: 'user_meera_sen',
     targetUserId: null,
-    content: "Wonderful school bus trip with my students today! 🚌✨ Everyone was so energetic and excited for the outdoor learning session.",
+    content: "Family",
     mediaUrl: '/assets/imgs/meera_1.jpg',
-    timestamp: Date.now() - 3600000 * 1.2,
+    timestamp: Date.now() - 3600000 * 1,
     likes: ['user_zuck', 'user_akshima', 'user_eduardo'],
     comments: [
       {
         id: 'cm_1',
         authorId: 'user_akshima',
-        content: 'Such a bright happy photo Meera! The kids look so enthusiastic!',
-        timestamp: Date.now() - 3600000 * 1.0
-      },
-      {
-        id: 'cm_2',
-        authorId: 'user_zuck',
-        content: 'Great update! Glad you are enjoying the classic Wall publisher.',
+        content: 'Such a joyful photo Meera!',
         timestamp: Date.now() - 3600000 * 0.8
       }
     ]
@@ -281,9 +294,9 @@ const INITIAL_SEED_POSTS = [
     id: 'post_meera_2',
     authorId: 'user_meera_sen',
     targetUserId: null,
-    content: "Working late at my classroom desk preparing tomorrow's literature & history lesson plans. 📝📚",
+    content: "Classes Started",
     mediaUrl: '/assets/imgs/meera_2.jpg',
-    timestamp: Date.now() - 3600000 * 4,
+    timestamp: Date.now() - 3600000 * 3,
     likes: ['user_eduardo'],
     comments: []
   },
@@ -291,32 +304,36 @@ const INITIAL_SEED_POSTS = [
     id: 'post_meera_3',
     authorId: 'user_meera_sen',
     targetUserId: null,
-    content: "Group photo with our dedicated students and faculty members outside the main school building!",
+    content: "My School",
     mediaUrl: '/assets/imgs/meera_3.jpg',
-    timestamp: Date.now() - 3600000 * 10,
+    timestamp: Date.now() - 3600000 * 6,
     likes: ['user_akshima', 'user_meera_sen_2'],
+    comments: []
+  },
+  {
+    id: 'post_meera_4',
+    authorId: 'user_meera_sen',
+    targetUserId: null,
+    content: "Lunch Break",
+    mediaUrl: '/assets/imgs/meera_4.jpg',
+    timestamp: Date.now() - 3600000 * 9,
+    likes: ['user_zuck', 'user_eduardo'],
     comments: []
   },
   {
     id: 'post_1',
     authorId: 'user_zuck',
     targetUserId: null,
-    content: "Welcome to Facebook 2007-2011 edition! Check out your Wall, leave pokes, and add friends across networks.",
+    content: "Welcome to Facebook 2007-2011 edition! Check out your Wall, leave pokes, and add friends.",
     mediaUrl: '/assets/imgs/globe.png',
     timestamp: Date.now() - 3600000 * 15,
-    likes: ['user_meera_sen', 'user_eduardo', 'user_sean', 'user_akshima'],
+    likes: ['user_meera_sen', 'user_eduardo', 'user_sean'],
     comments: [
       {
         id: 'c1',
         authorId: 'user_sean',
         content: 'This interface is legendary. Keep moving fast!',
         timestamp: Date.now() - 3600000 * 14
-      },
-      {
-        id: 'c2',
-        authorId: 'user_eduardo',
-        content: 'Love the classic wall layout, Mark!',
-        timestamp: Date.now() - 3600000 * 13
       }
     ]
   }
@@ -328,10 +345,10 @@ const INITIAL_SEED_NOTIFICATIONS = [
     userId: 'user_meera_sen',
     actorId: 'user_zuck',
     type: 'like',
-    message: 'Mark Zuckerberg liked your school bus field trip photo.',
+    message: 'Mark Zuckerberg liked your photo "Lunch Break".',
     read: false,
     timestamp: Date.now() - 1800000,
-    targetId: 'post_meera_1'
+    targetId: 'post_meera_4'
   }
 ];
 
@@ -395,14 +412,14 @@ class DatabaseService {
       email: userData.email,
       avatar: userData.avatar || '/assets/imgs/meera_4.jpg',
       status: 'is now using Facebook 2007!',
-      network: 'General Network',
-      hometown: userData.hometown || 'Palo Alto, CA',
-      relationship: userData.relationship || 'Single',
+      age: userData.age || 25,
       work: userData.work || 'Member at Facebook',
+      phone: userData.phone || '+91 9000000000',
+      relationship: userData.relationship || 'Single',
       education: userData.education || 'High School / University',
       bio: userData.bio || 'Hello world!',
       interests: 'Social Networking, Technology',
-      photos: [userData.avatar || '/assets/imgs/meera_4.jpg'],
+      photos: [{ url: userData.avatar || '/assets/imgs/meera_4.jpg', caption: 'Profile Photo' }],
       friends: [],
       pendingRequests: []
     };
@@ -637,7 +654,6 @@ class DatabaseService {
       u.firstName.toLowerCase().includes(q) ||
       u.lastName.toLowerCase().includes(q) ||
       u.email.toLowerCase().includes(q) ||
-      u.network.toLowerCase().includes(q) ||
       u.work.toLowerCase().includes(q)
     );
     const posts = this.getPosts().filter(p =>

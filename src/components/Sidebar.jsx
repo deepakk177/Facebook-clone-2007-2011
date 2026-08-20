@@ -1,6 +1,6 @@
 import React from 'react';
 import { useApp } from '../context/AppContext';
-import { Rss, User, Users, Image, Settings, RefreshCw, MessageSquare } from 'lucide-react';
+import { Rss, User, Users, Image, RefreshCw, MessageSquare } from 'lucide-react';
 
 export const Sidebar = () => {
   const { activeUser, currentView, viewParam, navigateTo, pendingRequests, resetDatabase } = useApp();
@@ -67,11 +67,10 @@ export const Sidebar = () => {
         </ul>
       </div>
 
-      {/* Network Badge Card */}
+      {/* Copyright Footer Card */}
       <div className="fb-sidebar-box" style={{ padding: '10px', fontSize: '10px', color: '#666' }}>
-        <div style={{ fontWeight: 'bold', color: '#333', marginBottom: '4px' }}>PRIMARY NETWORK</div>
-        <div>{activeUser.network}</div>
-        <div style={{ marginTop: '8px', borderTop: '1px solid #eee', paddingTop: '6px', fontSize: '9px', color: '#888' }}>
+        <div style={{ fontWeight: 'bold', color: '#333', marginBottom: '4px' }}>FACEBOOK CLASSIC</div>
+        <div style={{ fontSize: '9px', color: '#888' }}>
           Facebook © 2007-2011<br/>All rights reserved.
         </div>
       </div>

@@ -3,7 +3,7 @@ import { useApp } from '../context/AppContext';
 import { db } from '../services/db';
 import { Sidebar } from '../components/Sidebar';
 import { PostCard } from '../components/PostCard';
-import { Search, User, MessageSquare } from 'lucide-react';
+import { Search } from 'lucide-react';
 
 export const SearchView = ({ query }) => {
   const { navigateTo, sendFriendRequest, activeUser } = useApp();
@@ -54,13 +54,13 @@ export const SearchView = ({ query }) => {
                     return (
                       <div key={user.id} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '8px 12px', border: '1px solid #bdc7d8', background: '#fff' }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                          <img src={user.avatar} style={{ width: 45, height: 45, objectFit: 'cover' }} alt="" />
+                          <img src={user.avatar} style={{ width: 45, height: 45, objectFit: 'contain', background: '#f0f2f5' }} alt="" />
                           <div>
                             <a style={{ fontWeight: 'bold', fontSize: '13px' }} onClick={() => navigateTo('profile', user.id)}>
                               {user.name}
                             </a>
-                            <div style={{ fontSize: '10px', color: '#666' }}>{user.network} • {user.hometown}</div>
-                            <div style={{ fontSize: '10px', color: '#888' }}>{user.work}</div>
+                            <div style={{ fontSize: '10px', color: '#666' }}>{user.work}</div>
+                            <div style={{ fontSize: '10px', color: '#888' }}>{user.education}</div>
                           </div>
                         </div>
 

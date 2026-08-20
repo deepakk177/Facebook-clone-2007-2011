@@ -208,7 +208,8 @@ a:hover {
 .fb-nav-avatar {
   width: 22px;
   height: 22px;
-  object-fit: cover;
+  object-fit: contain;
+  background: #fff;
   border: 1px solid #2b4170;
 }
 
@@ -251,7 +252,8 @@ a:hover {
 .fb-sidebar-avatar {
   width: 50px;
   height: 50px;
-  object-fit: cover;
+  object-fit: contain;
+  background: #f0f2f5;
   border: 1px solid #b8c6dc;
 }
 
@@ -432,7 +434,8 @@ a:hover {
 .fb-post-avatar {
   width: 40px;
   height: 40px;
-  object-fit: cover;
+  object-fit: contain;
+  background: #f0f2f5;
   border: 1px solid #ccc;
 }
 
@@ -463,7 +466,7 @@ a:hover {
 
 .fb-post-media img {
   max-width: 100%;
-  max-height: 450px;
+  max-height: 480px;
   object-fit: contain;
   border: 1px solid #e5e5e5;
   display: block;
@@ -519,7 +522,8 @@ a:hover {
 .fb-comment-avatar {
   width: 32px;
   height: 32px;
-  object-fit: cover;
+  object-fit: contain;
+  background: #fff;
   border: 1px solid #ccc;
 }
 
@@ -571,13 +575,15 @@ a:hover {
   gap: 15px;
 }
 
+/* Zoomed Out Profile Avatar Container */
 .fb-profile-main-avatar {
-  width: 140px;
-  height: 140px;
-  object-fit: cover;
+  width: 160px;
+  height: 160px;
+  object-fit: contain; /* Full picture visible (zoomed out) without aggressive cropping */
+  object-position: center;
   border: 1px solid #b8c6dc;
   padding: 3px;
-  background: #ffffff;
+  background: #f0f2f5;
 }
 
 .fb-profile-details {
@@ -679,7 +685,8 @@ a:hover {
 .fb-friend-grid-avatar {
   width: 100%;
   height: 60px;
-  object-fit: cover;
+  object-fit: contain;
+  background: #f0f2f5;
   border: 1px solid #ccc;
 }
 

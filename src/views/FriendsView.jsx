@@ -30,7 +30,7 @@ export const FriendsView = () => {
   const filterList = (list) => {
     if (!filterQuery.trim()) return list;
     const q = filterQuery.toLowerCase();
-    return list.filter(u => u.name.toLowerCase().includes(q) || u.network.toLowerCase().includes(q));
+    return list.filter(u => u.name.toLowerCase().includes(q) || u.work.toLowerCase().includes(q));
   };
 
   const handleUnfriend = (friendId) => {
@@ -88,12 +88,12 @@ export const FriendsView = () => {
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
                     {filterList(myFriends).map(friend => (
                       <div key={friend.id} style={{ display: 'flex', gap: '10px', padding: '8px', border: '1px solid #bdc7d8', background: '#fff' }}>
-                        <img src={friend.avatar} style={{ width: 50, height: 50, objectFit: 'cover' }} alt="" />
+                        <img src={friend.avatar} style={{ width: 50, height: 50, objectFit: 'contain', background: '#f0f2f5' }} alt="" />
                         <div style={{ flex: 1 }}>
                           <a style={{ fontWeight: 'bold', fontSize: '12px' }} onClick={() => navigateTo('profile', friend.id)}>
                             {friend.name}
                           </a>
-                          <div style={{ fontSize: '10px', color: '#666' }}>{friend.network}</div>
+                          <div style={{ fontSize: '10px', color: '#666' }}>{friend.work}</div>
                           <div style={{ display: 'flex', gap: '5px', marginTop: '6px' }}>
                             <button className="fb-btn fb-btn-default" style={{ fontSize: '9px', padding: '1px 5px' }} onClick={() => navigateTo('profile', friend.id)}>
                               View Profile
@@ -122,12 +122,12 @@ export const FriendsView = () => {
                     {pendingUsers.map(reqUser => (
                       <div key={reqUser.id} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px', border: '1px solid #bdc7d8', background: '#eceff5' }}>
                         <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
-                          <img src={reqUser.avatar} style={{ width: 45, height: 45, objectFit: 'cover' }} alt="" />
+                          <img src={reqUser.avatar} style={{ width: 45, height: 45, objectFit: 'contain', background: '#fff' }} alt="" />
                           <div>
                             <a style={{ fontWeight: 'bold', fontSize: '12px' }} onClick={() => navigateTo('profile', reqUser.id)}>
                               {reqUser.name}
                             </a>
-                            <div style={{ fontSize: '10px', color: '#666' }}>{reqUser.network}</div>
+                            <div style={{ fontSize: '10px', color: '#666' }}>{reqUser.work}</div>
                           </div>
                         </div>
                         <div style={{ display: 'flex', gap: '6px' }}>
@@ -150,12 +150,12 @@ export const FriendsView = () => {
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
                 {suggestedUsers.map(u => (
                   <div key={u.id} style={{ display: 'flex', gap: '10px', padding: '8px', border: '1px solid #bdc7d8', background: '#fff' }}>
-                    <img src={u.avatar} style={{ width: 50, height: 50, objectFit: 'cover' }} alt="" />
+                    <img src={u.avatar} style={{ width: 50, height: 50, objectFit: 'contain', background: '#f0f2f5' }} alt="" />
                     <div style={{ flex: 1 }}>
                       <a style={{ fontWeight: 'bold', fontSize: '12px' }} onClick={() => navigateTo('profile', u.id)}>
                         {u.name}
                       </a>
-                      <div style={{ fontSize: '10px', color: '#666' }}>{u.network}</div>
+                      <div style={{ fontSize: '10px', color: '#666' }}>{u.work}</div>
                       <button className="fb-btn fb-btn-primary" style={{ fontSize: '9px', marginTop: '6px' }} onClick={() => sendFriendRequest(u.id)}>
                         + Add Friend
                       </button>

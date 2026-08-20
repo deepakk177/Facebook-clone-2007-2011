@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useApp } from '../context/AppContext';
 import { db } from '../services/db';
-import { Search, UserPlus, Bell, MessageSquare, LogOut, Check, X } from 'lucide-react';
+import { Search, UserPlus, Bell, Check, X } from 'lucide-react';
 
 export const Header = () => {
   const {
@@ -13,9 +13,7 @@ export const Header = () => {
     unreadNotifCount,
     pendingRequests,
     acceptFriendRequest,
-    rejectFriendRequest,
-    allUsers,
-    switchUser
+    rejectFriendRequest
   } = useApp();
 
   const [showSearchDropdown, setShowSearchDropdown] = useState(false);
@@ -64,7 +62,7 @@ export const Header = () => {
             <input
               type="text"
               className="fb-search-input"
-              placeholder="Search people, posts, and networks..."
+              placeholder="Search people and posts..."
               value={searchQuery}
               onChange={handleSearchChange}
               onFocus={() => setShowSearchDropdown(searchQuery.trim().length > 0)}
@@ -83,7 +81,7 @@ export const Header = () => {
                   {searchResults.users.length > 0 && (
                     <div>
                       <div style={{ background: '#f2f2f2', padding: '4px 8px', fontWeight: 'bold', fontSize: '10px', color: '#666' }}>PEOPLE</div>
-                      {searchResults.users.slice(0, 4).map(u => (
+                      {searchResults.users.slice(0, 5).map(u => (
                         <div
                           key={u.id}
                           className="fb-search-item"
@@ -92,10 +90,10 @@ export const Header = () => {
                             navigateTo('profile', u.id);
                           }}
                         >
-                          <img src={u.avatar} alt="" style={{ width: 24, height: 24, borderRadius: 2 }} />
+                          <img src={u.avatar} alt="" style={{ width: 24, height: 24, borderRadius: 2, objectFit: 'contain' }} />
                           <div>
                             <div style={{ fontWeight: 'bold', fontSize: '11px', color: '#3b5998' }}>{u.name}</div>
-                            <div style={{ fontSize: '9px', color: '#777' }}>{u.network}</div>
+                            <div style={{ fontSize: '9px', color: '#777' }}>{u.work}</div>
                           </div>
                         </div>
                       ))}
@@ -171,10 +169,10 @@ export const Header = () => {
                         if (!reqUser) return null;
                         return (
                           <div key={reqId} className="fb-popover-item" style={{ alignItems: 'center' }}>
-                            <img src={reqUser.avatar} style={{ width: 36, height: 36, objectFit: 'cover' }} alt="" />
+                            <img src={reqUser.avatar} style={{ width: 36, height: 36, objectFit: 'contain' }} alt="" />
                             <div style={{ flex: 1 }}>
                               <a style={{ fontWeight: 'bold' }} onClick={() => navigateTo('profile', reqId)}>{reqUser.name}</a>
-                              <div style={{ fontSize: '9px', color: '#777' }}>{reqUser.network}</div>
+                              <div style={{ fontSize: '9px', color: '#777' }}>{reqUser.work}</div>
                               <div style={{ display: 'flex', gap: '5px', marginTop: '4px' }}>
                                 <button className="fb-btn fb-btn-success" onClick={() => acceptFriendRequest(reqId)}>
                                   <Check size={10} /> Confirm
@@ -235,7 +233,7 @@ export const Header = () => {
                               }
                             }}
                           >
-                            <img src={actor?.avatar || '/assets/imgs/1.jpg'} style={{ width: 32, height: 32, objectFit: 'cover' }} alt="" />
+                            <img src={actor?.avatar || '/assets/imgs/1.jpg'} style={{ width: 32, height: 32, objectFit: 'contain' }} alt="" />
                             <div>
                               <div>{n.message}</div>
                               <div style={{ fontSize: '9px', color: '#888', marginTop: '2px' }}>
