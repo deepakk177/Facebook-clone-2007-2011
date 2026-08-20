@@ -1,6 +1,6 @@
 // Facebook 2007-2011 Client Database Service with Persistence & Seed Data
 
-const DB_KEY = 'FB_2007_2011_DATABASE_V10';
+const DB_KEY = 'FB_2007_2011_DATABASE_V11';
 
 const INITIAL_SEED_USERS = [
   {
@@ -20,14 +20,108 @@ const INITIAL_SEED_USERS = [
     interests: 'Literature, Teaching, School Field Trips, Indian Art & History',
     photos: [
       { url: '/assets/imgs/meera_profile_pic.jpg', caption: 'Profile Photo' },
-      { url: '/assets/imgs/feed_manit_bhopal.jpg', caption: 'MANIT Bhopal Campus' },
       { url: '/assets/imgs/meera_1.jpg', caption: 'Family' },
       { url: '/assets/imgs/meera_2.jpg', caption: 'Classes Started' },
       { url: '/assets/imgs/meera_3.jpg', caption: 'My School' },
       { url: '/assets/imgs/meera_4.jpg', caption: 'Lunch Break' },
       { url: '/assets/imgs/meera_5.jpg', caption: 'Portrait' }
     ],
-    friends: ['user_zuck', 'user_akshima', 'user_eduardo'],
+    friends: ['user_zuck', 'user_akshima', 'user_eduardo', 'user_rahul', 'user_priya', 'user_rohan'],
+    pendingRequests: []
+  },
+  {
+    id: 'user_rahul',
+    name: 'Rahul Verma',
+    firstName: 'Rahul',
+    lastName: 'Verma',
+    email: 'rahul.verma@facebook.com',
+    avatar: '/assets/imgs/1.jpg',
+    status: 'is visiting university campuses across North India.',
+    age: 30,
+    work: 'Senior Product Manager',
+    phone: '+91 9811223344',
+    relationship: 'Single',
+    education: 'NIT Bhopal (MANIT)',
+    bio: 'Tech product builder, avid traveler, and photography enthusiast.',
+    interests: 'Campus Life, Travel, Gadgets',
+    photos: [{ url: '/assets/imgs/feed_manit_bhopal.jpg', caption: 'MANIT Bhopal Campus' }],
+    friends: ['user_meera_sen', 'user_priya'],
+    pendingRequests: []
+  },
+  {
+    id: 'user_priya',
+    name: 'Priya Sharma',
+    firstName: 'Priya',
+    lastName: 'Sharma',
+    email: 'priya.sharma@facebook.com',
+    avatar: '/assets/imgs/3.jpg',
+    status: 'is capturing nature scenes under the moonlight.',
+    age: 27,
+    work: 'Nature Photographer & Digital Artist',
+    phone: '+91 9822334455',
+    relationship: 'Single',
+    education: 'Delhi College of Art',
+    bio: 'Exploring night landscapes and natural light photography.',
+    interests: 'Night Photography, Astronomy, Painting',
+    photos: [{ url: '/assets/imgs/feed_moonlight_lake.jpg', caption: 'Moonlight Over Water' }],
+    friends: ['user_meera_sen', 'user_rahul', 'user_rohan'],
+    pendingRequests: []
+  },
+  {
+    id: 'user_rohan',
+    name: 'Rohan Gupta',
+    firstName: 'Rohan',
+    lastName: 'Gupta',
+    email: 'rohan.gupta@facebook.com',
+    avatar: '/assets/imgs/2.jpg',
+    status: 'is sketching samurai ink concepts.',
+    age: 28,
+    work: 'Illustrator & Graphic Novelist',
+    phone: '+91 9833445566',
+    relationship: 'Single',
+    education: 'National Institute of Design',
+    bio: 'Classical ink illustrator and character designer.',
+    interests: 'Ink Sketches, Manga, Philosophy, Martial Arts',
+    photos: [{ url: '/assets/imgs/feed_samurai_art.jpg', caption: 'Musashi Ink Sketch' }],
+    friends: ['user_meera_sen', 'user_priya', 'user_ananya'],
+    pendingRequests: []
+  },
+  {
+    id: 'user_ananya',
+    name: 'Ananya Mishra',
+    firstName: 'Ananya',
+    lastName: 'Mishra',
+    email: 'ananya.mishra@facebook.com',
+    avatar: '/assets/imgs/5.jpg',
+    status: 'is relaxing at the botanical garden park.',
+    age: 26,
+    work: 'Landscape Architect',
+    phone: '+91 9844556677',
+    relationship: 'Single',
+    education: 'SPA Delhi',
+    bio: 'Designing eco-friendly public parks and urban green spaces.',
+    interests: 'Botany, Park Design, Environmental Conservation',
+    photos: [{ url: '/assets/imgs/feed_park_benches.jpg', caption: 'Botanical Garden Park' }],
+    friends: ['user_rohan', 'user_vikram'],
+    pendingRequests: []
+  },
+  {
+    id: 'user_vikram',
+    name: 'Vikramaditya Singh',
+    firstName: 'Vikramaditya',
+    lastName: 'Singh',
+    email: 'vikram.singh@facebook.com',
+    avatar: '/assets/imgs/4.jpg',
+    status: 'is documenting Indian heritage frescoes & wall art.',
+    age: 33,
+    work: 'Art Historian & Curator',
+    phone: '+91 9855667788',
+    relationship: 'Single',
+    education: 'Banaras Hindu University',
+    bio: 'Preserving ancient murals, classical music, and traditional art forms.',
+    interests: 'Mural Paintings, Classical Instruments, History',
+    photos: [{ url: '/assets/imgs/feed_flute_painting.jpg', caption: 'Flute Maiden Painting' }],
+    friends: ['user_ananya', 'user_meera_sen'],
     pendingRequests: []
   },
   {
@@ -45,10 +139,7 @@ const INITIAL_SEED_USERS = [
     education: 'Jadavpur University',
     bio: 'Designing sustainable urban living spaces.',
     interests: 'Architecture, Heritage Buildings, Sketching',
-    photos: [
-      { url: '/assets/imgs/feed_park_benches.jpg', caption: 'Botanical Garden Park' },
-      { url: '/assets/imgs/1.jpg', caption: 'Architectural Sketch' }
-    ],
+    photos: [{ url: '/assets/imgs/1.jpg', caption: 'Architectural Sketch' }],
     friends: ['user_meera_sen'],
     pendingRequests: []
   },
@@ -67,9 +158,7 @@ const INITIAL_SEED_USERS = [
     education: 'IIT Bombay',
     bio: 'Biomedical researcher exploring health innovations.',
     interests: 'Genomics, Molecular Biology, Classical Music',
-    photos: [
-      { url: '/assets/imgs/2.jpg', caption: 'Lab Setup' }
-    ],
+    photos: [{ url: '/assets/imgs/2.jpg', caption: 'Lab Setup' }],
     friends: [],
     pendingRequests: []
   },
@@ -88,9 +177,7 @@ const INITIAL_SEED_USERS = [
     education: 'NIFT',
     bio: 'Creating sustainable fusion ethnic wear.',
     interests: 'Fashion, Textiles, Travel Photography',
-    photos: [
-      { url: '/assets/imgs/3.jpg', caption: 'Design Studio' }
-    ],
+    photos: [{ url: '/assets/imgs/3.jpg', caption: 'Design Studio' }],
     friends: ['user_akshima'],
     pendingRequests: []
   },
@@ -109,9 +196,7 @@ const INITIAL_SEED_USERS = [
     education: 'IISc',
     bio: 'Passionate about cloud architecture and open source.',
     interests: 'Distributed Systems, Python, Trekking',
-    photos: [
-      { url: '/assets/imgs/4.jpg', caption: 'Tech Conference' }
-    ],
+    photos: [{ url: '/assets/imgs/4.jpg', caption: 'Tech Conference' }],
     friends: ['user_dustin'],
     pendingRequests: []
   },
@@ -130,9 +215,7 @@ const INITIAL_SEED_USERS = [
     education: 'University Department of Journalism',
     bio: 'Reporting on socio-economic developments and education.',
     interests: 'Journalism, Books, Social Policy',
-    photos: [
-      { url: '/assets/imgs/5.jpg', caption: 'Press Room' }
-    ],
+    photos: [{ url: '/assets/imgs/5.jpg', caption: 'Press Room' }],
     friends: [],
     pendingRequests: []
   },
@@ -151,10 +234,7 @@ const INITIAL_SEED_USERS = [
     education: 'Arts Academy',
     bio: 'Promoting traditional classical performing arts.',
     interests: 'Kathak, Classical Music, Cultural Heritage',
-    photos: [
-      { url: '/assets/imgs/feed_flute_painting.jpg', caption: 'Flute Maiden Painting' },
-      { url: '/assets/imgs/wall.jpg', caption: 'Stage Performance' }
-    ],
+    photos: [{ url: '/assets/imgs/wall.jpg', caption: 'Stage Performance' }],
     friends: [],
     pendingRequests: []
   },
@@ -173,9 +253,7 @@ const INITIAL_SEED_USERS = [
     education: 'Film Institute',
     bio: 'Telling human stories through cinematic lens.',
     interests: 'Documentary, Cinema, Environmental Causes',
-    photos: [
-      { url: '/assets/imgs/globe.png', caption: 'Documentary Location' }
-    ],
+    photos: [{ url: '/assets/imgs/globe.png', caption: 'Documentary Location' }],
     friends: [],
     pendingRequests: []
   },
@@ -194,10 +272,7 @@ const INITIAL_SEED_USERS = [
     education: 'Harvard University (Computer Science & Psychology)',
     bio: "I'm trying to make the world more open and connected.",
     interests: 'Open Source, Information Flow, Artificial Intelligence, Fencing',
-    photos: [
-      { url: '/assets/imgs/feed_samurai_art.jpg', caption: 'Musashi Ink Sketch' },
-      { url: '/assets/imgs/1.jpg', caption: 'Palo Alto Office' }
-    ],
+    photos: [{ url: '/assets/imgs/1.jpg', caption: 'Palo Alto Office' }],
     friends: ['user_meera_sen', 'user_eduardo', 'user_sean', 'user_dustin'],
     pendingRequests: []
   },
@@ -273,10 +348,7 @@ const INITIAL_SEED_USERS = [
     education: 'Stanford University (Design)',
     bio: 'Designing nostalgic interfaces and web applications.',
     interests: 'Web Design, Pixel Art, Retro UI, Photography',
-    photos: [
-      { url: '/assets/imgs/feed_moonlight_lake.jpg', caption: 'Moonlight Over Water' },
-      { url: '/assets/imgs/5.jpg', caption: 'Design Showcase' }
-    ],
+    photos: [{ url: '/assets/imgs/5.jpg', caption: 'Design Showcase' }],
     friends: ['user_meera_sen', 'user_eduardo'],
     pendingRequests: ['user_zuck']
   }
@@ -285,73 +357,73 @@ const INITIAL_SEED_USERS = [
 const INITIAL_SEED_POSTS = [
   {
     id: 'post_manit_1',
-    authorId: 'user_meera_sen',
+    authorId: 'user_rahul', // Posted by Rahul Verma
     targetUserId: null,
-    content: "Visiting Maulana Azad National Institute of Technology (MANIT) Bhopal today! Beautiful palm trees & campus entrance.",
+    content: "Visiting Maulana Azad National Institute of Technology (MANIT) Bhopal today! Beautiful campus entrance.",
     mediaUrl: '/assets/imgs/feed_manit_bhopal.jpg',
     timestamp: Date.now() - 3600000 * 0.1,
-    likes: ['user_zuck', 'user_akshima', 'user_eduardo'],
+    likes: ['user_meera_sen', 'user_priya', 'user_zuck'],
     comments: [
       {
         id: 'c_m1',
-        authorId: 'user_akshima',
-        content: 'The campus architecture looks grand and impressive Meera!',
+        authorId: 'user_meera_sen',
+        content: 'The campus looks grand Rahul!',
         timestamp: Date.now() - 3600000 * 0.05
       }
     ]
   },
   {
     id: 'post_moonlight_1',
-    authorId: 'user_akshima',
+    authorId: 'user_priya', // Posted by Priya Sharma
     targetUserId: null,
     content: "Full moon reflection over the lake waters tonight. Nature is breathtaking! 🌕🌊",
     mediaUrl: '/assets/imgs/feed_moonlight_lake.jpg',
     timestamp: Date.now() - 3600000 * 0.3,
-    likes: ['user_meera_sen', 'user_zuck', 'user_eduardo'],
+    likes: ['user_meera_sen', 'user_rahul', 'user_rohan'],
     comments: [
       {
         id: 'c_ml1',
         authorId: 'user_meera_sen',
-        content: 'Stunning night view Akshima! The moon glow on the water is magic.',
+        content: 'Stunning capture Priya! The moonlight reflection looks magical.',
         timestamp: Date.now() - 3600000 * 0.2
       }
     ]
   },
   {
     id: 'post_samurai_1',
-    authorId: 'user_zuck',
+    authorId: 'user_rohan', // Posted by Rohan Gupta
     targetUserId: null,
     content: "Minimalist ink sketch artwork of Musashi & the butterfly. 'Do nothing that is of no use.'",
     mediaUrl: '/assets/imgs/feed_samurai_art.jpg',
     timestamp: Date.now() - 3600000 * 0.6,
-    likes: ['user_sean', 'user_meera_sen', 'user_eduardo'],
+    likes: ['user_priya', 'user_ananya', 'user_meera_sen'],
     comments: [
       {
         id: 'c_s1',
-        authorId: 'user_sean',
-        content: 'Powerful quote Mark. Focus on what truly matters!',
+        authorId: 'user_ananya',
+        content: 'Incredible line work and contrast Rohan!',
         timestamp: Date.now() - 3600000 * 0.5
       }
     ]
   },
   {
     id: 'post_park_1',
-    authorId: 'user_meera_sen_2',
+    authorId: 'user_ananya', // Posted by Ananya Mishra
     targetUserId: null,
-    content: "Quiet afternoon break at the botanical garden park! Love the blue bench seating & snake wall art.",
+    content: "Quiet afternoon break at the city botanical garden park! Love the blue bench seating & wall art.",
     mediaUrl: '/assets/imgs/feed_park_benches.jpg',
     timestamp: Date.now() - 3600000 * 0.9,
-    likes: ['user_meera_sen', 'user_akshima'],
+    likes: ['user_rohan', 'user_vikram'],
     comments: []
   },
   {
     id: 'post_flute_1',
-    authorId: 'user_meera_sharma',
+    authorId: 'user_vikram', // Posted by Vikramaditya Singh
     targetUserId: null,
     content: "Exquisite wall painting of a maiden playing flute on rocks under autumn leaves.",
     mediaUrl: '/assets/imgs/feed_flute_painting.jpg',
     timestamp: Date.now() - 3600000 * 1.2,
-    likes: ['user_meera_sen', 'user_akshima', 'user_eduardo'],
+    likes: ['user_ananya', 'user_meera_sen', 'user_priya'],
     comments: []
   },
   {
@@ -444,9 +516,9 @@ const INITIAL_SEED_NOTIFICATIONS = [
   {
     id: 'notif_1',
     userId: 'user_meera_sen',
-    actorId: 'user_zuck',
+    actorId: 'user_rahul',
     type: 'like',
-    message: 'Mark Zuckerberg liked your photo "MANIT Bhopal Campus".',
+    message: 'Rahul Verma tagged you in a post "MANIT Bhopal Campus".',
     read: false,
     timestamp: Date.now() - 1800000,
     targetId: 'post_manit_1'
