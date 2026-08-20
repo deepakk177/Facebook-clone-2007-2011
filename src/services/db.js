@@ -1,6 +1,6 @@
 // Facebook 2007-2011 Client Database Service with Persistence & Seed Data
 
-const DB_KEY = 'FB_2007_2011_DATABASE_V8';
+const DB_KEY = 'FB_2007_2011_DATABASE_V9';
 
 const INITIAL_SEED_USERS = [
   {
@@ -275,6 +275,23 @@ const INITIAL_SEED_USERS = [
 
 const INITIAL_SEED_POSTS = [
   {
+    id: 'post_zuck_2',
+    authorId: 'user_zuck',
+    targetUserId: null,
+    content: "Just reached 100 million active users on Facebook! Thank you to all our users around the world for making this possible.",
+    mediaUrl: '/assets/imgs/globe.png',
+    timestamp: Date.now() - 3600000 * 0.2,
+    likes: ['user_meera_sen', 'user_eduardo', 'user_sean', 'user_dustin', 'user_akshima'],
+    comments: [
+      {
+        id: 'c_z3',
+        authorId: 'user_meera_sen',
+        content: 'Congratulations Mark! Milestone achieved! 🎉',
+        timestamp: Date.now() - 3600000 * 0.1
+      }
+    ]
+  },
+  {
     id: 'post_zuck_1',
     authorId: 'user_zuck',
     targetUserId: null,
@@ -315,6 +332,16 @@ const INITIAL_SEED_POSTS = [
     ]
   },
   {
+    id: 'post_meera_sen_2_1',
+    authorId: 'user_meera_sen_2',
+    targetUserId: null,
+    content: "Finishing the blueprint draft for the eco-friendly city park project! 📐🌿",
+    mediaUrl: '/assets/imgs/1.jpg',
+    timestamp: Date.now() - 3600000 * 1.8,
+    likes: ['user_meera_sen', 'user_akshima'],
+    comments: []
+  },
+  {
     id: 'post_eduardo_1',
     authorId: 'user_eduardo',
     targetUserId: null,
@@ -330,6 +357,16 @@ const INITIAL_SEED_POSTS = [
         timestamp: Date.now() - 3600000 * 1.5
       }
     ]
+  },
+  {
+    id: 'post_meera_sen_3_1',
+    authorId: 'user_meera_sen_3',
+    targetUserId: null,
+    content: "Lab results are finally in! Genomic sequence analysis completed successfully today.",
+    mediaUrl: '/assets/imgs/2.jpg',
+    timestamp: Date.now() - 3600000 * 2.8,
+    likes: ['user_meera_sen'],
+    comments: []
   },
   {
     id: 'post_meera_2',
@@ -359,6 +396,16 @@ const INITIAL_SEED_POSTS = [
     ]
   },
   {
+    id: 'post_meera_deshmukh_1',
+    authorId: 'user_meera_deshmukh',
+    targetUserId: null,
+    content: "Writing a weekend feature story on the evolution of digital social networking.",
+    mediaUrl: '/assets/imgs/5.jpg',
+    timestamp: Date.now() - 3600000 * 5,
+    likes: ['user_meera_sen', 'user_akshima'],
+    comments: []
+  },
+  {
     id: 'post_meera_kapoor_1',
     authorId: 'user_meera_kapoor',
     targetUserId: null,
@@ -366,6 +413,16 @@ const INITIAL_SEED_POSTS = [
     mediaUrl: '/assets/imgs/3.jpg',
     timestamp: Date.now() - 3600000 * 5.5,
     likes: ['user_akshima'],
+    comments: []
+  },
+  {
+    id: 'post_meera_sharma_1',
+    authorId: 'user_meera_sharma',
+    targetUserId: null,
+    content: "Choreography practice for the upcoming inter-state classical dance festival!",
+    mediaUrl: '/assets/imgs/wall.jpg',
+    timestamp: Date.now() - 3600000 * 6.2,
+    likes: ['user_meera_sen'],
     comments: []
   },
   {
@@ -389,6 +446,16 @@ const INITIAL_SEED_POSTS = [
     comments: []
   },
   {
+    id: 'post_meera_nair_1',
+    authorId: 'user_meera_nair',
+    targetUserId: null,
+    content: "Location scouting in the hills for our upcoming independent documentary series 📽️✨",
+    mediaUrl: '/assets/imgs/globe.png',
+    timestamp: Date.now() - 3600000 * 9,
+    likes: ['user_meera_sen'],
+    comments: []
+  },
+  {
     id: 'post_meera_4',
     authorId: 'user_meera_sen',
     targetUserId: null,
@@ -396,6 +463,16 @@ const INITIAL_SEED_POSTS = [
     mediaUrl: '/assets/imgs/meera_4.jpg',
     timestamp: Date.now() - 3600000 * 10,
     likes: ['user_zuck', 'user_eduardo'],
+    comments: []
+  },
+  {
+    id: 'post_meera_roy_1',
+    authorId: 'user_meera_roy',
+    targetUserId: null,
+    content: "Testing microservice resilience and distributed cloud clustering performance.",
+    mediaUrl: '/assets/imgs/4.jpg',
+    timestamp: Date.now() - 3600000 * 11,
+    likes: ['user_dustin', 'user_zuck'],
     comments: []
   },
   {
