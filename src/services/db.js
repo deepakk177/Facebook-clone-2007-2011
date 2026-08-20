@@ -1,6 +1,6 @@
 // Facebook 2007-2011 Client Database Service with Persistence & Seed Data
 
-const DB_KEY = 'FB_2007_2011_DATABASE_V7';
+const DB_KEY = 'FB_2007_2011_DATABASE_V8';
 
 const INITIAL_SEED_USERS = [
   {
@@ -275,6 +275,29 @@ const INITIAL_SEED_USERS = [
 
 const INITIAL_SEED_POSTS = [
   {
+    id: 'post_zuck_1',
+    authorId: 'user_zuck',
+    targetUserId: null,
+    content: "Excited to announce Facebook Connect! Now you can connect your identity across the web seamlessly.",
+    mediaUrl: '/assets/imgs/globe.png',
+    timestamp: Date.now() - 3600000 * 0.5,
+    likes: ['user_meera_sen', 'user_eduardo', 'user_sean', 'user_akshima'],
+    comments: [
+      {
+        id: 'c_z1',
+        authorId: 'user_sean',
+        content: 'This is going to transform the social graph forever!',
+        timestamp: Date.now() - 3600000 * 0.4
+      },
+      {
+        id: 'c_z2',
+        authorId: 'user_meera_sen',
+        content: 'Awesome innovation Mark!',
+        timestamp: Date.now() - 3600000 * 0.3
+      }
+    ]
+  },
+  {
     id: 'post_meera_1',
     authorId: 'user_meera_sen',
     targetUserId: null,
@@ -292,13 +315,57 @@ const INITIAL_SEED_POSTS = [
     ]
   },
   {
+    id: 'post_eduardo_1',
+    authorId: 'user_eduardo',
+    targetUserId: null,
+    content: "Reviewing our Q3 financial growth metrics. User registration numbers are soaring across college networks!",
+    mediaUrl: '/assets/imgs/2.jpg',
+    timestamp: Date.now() - 3600000 * 2,
+    likes: ['user_zuck', 'user_meera_sen'],
+    comments: [
+      {
+        id: 'c_e1',
+        authorId: 'user_zuck',
+        content: 'Great work Eduardo. Let us review the server budget numbers tomorrow.',
+        timestamp: Date.now() - 3600000 * 1.5
+      }
+    ]
+  },
+  {
     id: 'post_meera_2',
     authorId: 'user_meera_sen',
     targetUserId: null,
     content: "Classes Started",
     mediaUrl: '/assets/imgs/meera_2.jpg',
-    timestamp: Date.now() - 3600000 * 3,
+    timestamp: Date.now() - 3600000 * 3.5,
     likes: ['user_eduardo'],
+    comments: []
+  },
+  {
+    id: 'post_akshima_1',
+    authorId: 'user_akshima',
+    targetUserId: null,
+    content: "Finalizing retro UI component designs for the news feed and profile walls! ✨💻",
+    mediaUrl: '/assets/imgs/5.jpg',
+    timestamp: Date.now() - 3600000 * 4.5,
+    likes: ['user_meera_sen', 'user_zuck'],
+    comments: [
+      {
+        id: 'c_ak1',
+        authorId: 'user_meera_sen',
+        content: 'The 2007 blue navbar aesthetic looks amazing Akshima!',
+        timestamp: Date.now() - 3600000 * 4
+      }
+    ]
+  },
+  {
+    id: 'post_meera_kapoor_1',
+    authorId: 'user_meera_kapoor',
+    targetUserId: null,
+    content: "Selecting fabric textures & colors for the upcoming autumn fashion week collection!",
+    mediaUrl: '/assets/imgs/3.jpg',
+    timestamp: Date.now() - 3600000 * 5.5,
+    likes: ['user_akshima'],
     comments: []
   },
   {
@@ -307,8 +374,18 @@ const INITIAL_SEED_POSTS = [
     targetUserId: null,
     content: "My School",
     mediaUrl: '/assets/imgs/meera_3.jpg',
-    timestamp: Date.now() - 3600000 * 6,
+    timestamp: Date.now() - 3600000 * 7,
     likes: ['user_akshima', 'user_meera_sen_2'],
+    comments: []
+  },
+  {
+    id: 'post_dustin_1',
+    authorId: 'user_dustin',
+    targetUserId: null,
+    content: "Upgraded our database caching layer to handle 10x query traffic. Zero downtime deployment!",
+    mediaUrl: '/assets/imgs/4.jpg',
+    timestamp: Date.now() - 3600000 * 8,
+    likes: ['user_zuck', 'user_sean'],
     comments: []
   },
   {
@@ -317,26 +394,19 @@ const INITIAL_SEED_POSTS = [
     targetUserId: null,
     content: "Lunch Break",
     mediaUrl: '/assets/imgs/meera_4.jpg',
-    timestamp: Date.now() - 3600000 * 9,
+    timestamp: Date.now() - 3600000 * 10,
     likes: ['user_zuck', 'user_eduardo'],
     comments: []
   },
   {
-    id: 'post_1',
-    authorId: 'user_zuck',
+    id: 'post_sean_1',
+    authorId: 'user_sean',
     targetUserId: null,
-    content: "Welcome to Facebook 2007-2011 edition! Check out your Wall, leave pokes, and add friends.",
-    mediaUrl: '/assets/imgs/globe.png',
-    timestamp: Date.now() - 3600000 * 15,
-    likes: ['user_meera_sen', 'user_eduardo', 'user_sean'],
-    comments: [
-      {
-        id: 'c1',
-        authorId: 'user_sean',
-        content: 'This interface is legendary. Keep moving fast!',
-        timestamp: Date.now() - 3600000 * 14
-      }
-    ]
+    content: "Drop the 'The' from 'The Facebook'. Just Facebook. It's cleaner.",
+    mediaUrl: null,
+    timestamp: Date.now() - 3600000 * 12,
+    likes: ['user_zuck', 'user_dustin'],
+    comments: []
   }
 ];
 
