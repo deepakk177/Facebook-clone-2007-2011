@@ -1,6 +1,6 @@
 // Facebook 2007-2011 Client Database Service with Persistence & Seed Data
 
-const DB_KEY = 'FB_2007_2011_DATABASE_V6';
+const DB_KEY = 'FB_2007_2011_DATABASE_V7';
 
 const INITIAL_SEED_USERS = [
   {
@@ -9,7 +9,7 @@ const INITIAL_SEED_USERS = [
     firstName: 'Meera',
     lastName: 'Sen',
     email: 'meera.sen@facebook.com',
-    avatar: '/assets/imgs/meera_4.jpg', // 4th picture set as profile picture
+    avatar: '/assets/imgs/meera_profile_pic.jpg', // Updated profile picture
     status: 'is taking a quick lunch break on the campus balcony.',
     age: 31,
     work: 'High School Teacher',
@@ -19,6 +19,7 @@ const INITIAL_SEED_USERS = [
     bio: 'Passionate educator, literary enthusiast, and student mentor.',
     interests: 'Literature, Teaching, School Field Trips, Indian Art & History',
     photos: [
+      { url: '/assets/imgs/meera_profile_pic.jpg', caption: 'Profile Photo' },
       { url: '/assets/imgs/meera_1.jpg', caption: 'Family' },
       { url: '/assets/imgs/meera_2.jpg', caption: 'Classes Started' },
       { url: '/assets/imgs/meera_3.jpg', caption: 'My School' },
@@ -410,7 +411,7 @@ class DatabaseService {
       firstName: userData.firstName,
       lastName: userData.lastName,
       email: userData.email,
-      avatar: userData.avatar || '/assets/imgs/meera_4.jpg',
+      avatar: userData.avatar || '/assets/imgs/meera_profile_pic.jpg',
       status: 'is now using Facebook 2007!',
       age: userData.age || 25,
       work: userData.work || 'Member at Facebook',
@@ -419,7 +420,7 @@ class DatabaseService {
       education: userData.education || 'High School / University',
       bio: userData.bio || 'Hello world!',
       interests: 'Social Networking, Technology',
-      photos: [{ url: userData.avatar || '/assets/imgs/meera_4.jpg', caption: 'Profile Photo' }],
+      photos: [{ url: userData.avatar || '/assets/imgs/meera_profile_pic.jpg', caption: 'Profile Photo' }],
       friends: [],
       pendingRequests: []
     };
@@ -471,7 +472,6 @@ class DatabaseService {
     };
     this.data.posts.unshift(newPost);
 
-    // Also auto-add media to user's photo album if photo attached!
     if (mediaUrl) {
       this.addPhoto(authorId, mediaUrl, content.slice(0, 30) || 'Uploaded Photo');
     }
