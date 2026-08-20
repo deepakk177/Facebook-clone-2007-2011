@@ -1,6 +1,6 @@
 // Facebook 2007-2011 Client Database Service with Persistence & Seed Data
 
-const DB_KEY = 'FB_2007_2011_DATABASE_V5';
+const DB_KEY = 'FB_2007_2011_DATABASE_V6';
 
 const INITIAL_SEED_USERS = [
   {
@@ -14,7 +14,7 @@ const INITIAL_SEED_USERS = [
     age: 31,
     work: 'High School Teacher',
     phone: '+91 987654321',
-    relationship: 'In a relationship',
+    relationship: 'Single',
     education: 'Delhi University (B.Ed & M.A. Literature)',
     bio: 'Passionate educator, literary enthusiast, and student mentor.',
     interests: 'Literature, Teaching, School Field Trips, Indian Art & History',
@@ -60,7 +60,7 @@ const INITIAL_SEED_USERS = [
     age: 34,
     work: 'Medical Research Scholar',
     phone: '+91 976543210',
-    relationship: 'Married',
+    relationship: 'Single',
     education: 'IIT Bombay',
     bio: 'Biomedical researcher exploring health innovations.',
     interests: 'Genomics, Molecular Biology, Classical Music',
@@ -102,7 +102,7 @@ const INITIAL_SEED_USERS = [
     age: 32,
     work: 'Software Architect at Tech Global',
     phone: '+91 912345678',
-    relationship: 'In a relationship',
+    relationship: 'Single',
     education: 'IISc',
     bio: 'Passionate about cloud architecture and open source.',
     interests: 'Distributed Systems, Python, Trekking',
@@ -123,7 +123,7 @@ const INITIAL_SEED_USERS = [
     age: 35,
     work: 'Senior Journalist & Columnist',
     phone: '+91 923456789',
-    relationship: 'Married',
+    relationship: 'Single',
     education: 'University Department of Journalism',
     bio: 'Reporting on socio-economic developments and education.',
     interests: 'Journalism, Books, Social Policy',
@@ -165,7 +165,7 @@ const INITIAL_SEED_USERS = [
     age: 33,
     work: 'Documentary Filmmaker',
     phone: '+91 945678901',
-    relationship: 'In a relationship',
+    relationship: 'Single',
     education: 'Film Institute',
     bio: 'Telling human stories through cinematic lens.',
     interests: 'Documentary, Cinema, Environmental Causes',
