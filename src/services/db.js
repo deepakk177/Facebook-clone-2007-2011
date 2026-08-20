@@ -1,6 +1,6 @@
 // Facebook 2007-2011 Client Database Service with Persistence & Seed Data
 
-const DB_KEY = 'FB_2007_2011_DATABASE_V9';
+const DB_KEY = 'FB_2007_2011_DATABASE_V10';
 
 const INITIAL_SEED_USERS = [
   {
@@ -9,7 +9,7 @@ const INITIAL_SEED_USERS = [
     firstName: 'Meera',
     lastName: 'Sen',
     email: 'meera.sen@facebook.com',
-    avatar: '/assets/imgs/meera_profile_pic.jpg', // Updated profile picture
+    avatar: '/assets/imgs/meera_profile_pic.jpg',
     status: 'is taking a quick lunch break on the campus balcony.',
     age: 31,
     work: 'High School Teacher',
@@ -20,6 +20,7 @@ const INITIAL_SEED_USERS = [
     interests: 'Literature, Teaching, School Field Trips, Indian Art & History',
     photos: [
       { url: '/assets/imgs/meera_profile_pic.jpg', caption: 'Profile Photo' },
+      { url: '/assets/imgs/feed_manit_bhopal.jpg', caption: 'MANIT Bhopal Campus' },
       { url: '/assets/imgs/meera_1.jpg', caption: 'Family' },
       { url: '/assets/imgs/meera_2.jpg', caption: 'Classes Started' },
       { url: '/assets/imgs/meera_3.jpg', caption: 'My School' },
@@ -45,6 +46,7 @@ const INITIAL_SEED_USERS = [
     bio: 'Designing sustainable urban living spaces.',
     interests: 'Architecture, Heritage Buildings, Sketching',
     photos: [
+      { url: '/assets/imgs/feed_park_benches.jpg', caption: 'Botanical Garden Park' },
       { url: '/assets/imgs/1.jpg', caption: 'Architectural Sketch' }
     ],
     friends: ['user_meera_sen'],
@@ -150,6 +152,7 @@ const INITIAL_SEED_USERS = [
     bio: 'Promoting traditional classical performing arts.',
     interests: 'Kathak, Classical Music, Cultural Heritage',
     photos: [
+      { url: '/assets/imgs/feed_flute_painting.jpg', caption: 'Flute Maiden Painting' },
       { url: '/assets/imgs/wall.jpg', caption: 'Stage Performance' }
     ],
     friends: [],
@@ -191,7 +194,10 @@ const INITIAL_SEED_USERS = [
     education: 'Harvard University (Computer Science & Psychology)',
     bio: "I'm trying to make the world more open and connected.",
     interests: 'Open Source, Information Flow, Artificial Intelligence, Fencing',
-    photos: [{ url: '/assets/imgs/1.jpg', caption: 'Palo Alto Office' }],
+    photos: [
+      { url: '/assets/imgs/feed_samurai_art.jpg', caption: 'Musashi Ink Sketch' },
+      { url: '/assets/imgs/1.jpg', caption: 'Palo Alto Office' }
+    ],
     friends: ['user_meera_sen', 'user_eduardo', 'user_sean', 'user_dustin'],
     pendingRequests: []
   },
@@ -267,7 +273,10 @@ const INITIAL_SEED_USERS = [
     education: 'Stanford University (Design)',
     bio: 'Designing nostalgic interfaces and web applications.',
     interests: 'Web Design, Pixel Art, Retro UI, Photography',
-    photos: [{ url: '/assets/imgs/5.jpg', caption: 'Design Showcase' }],
+    photos: [
+      { url: '/assets/imgs/feed_moonlight_lake.jpg', caption: 'Moonlight Over Water' },
+      { url: '/assets/imgs/5.jpg', caption: 'Design Showcase' }
+    ],
     friends: ['user_meera_sen', 'user_eduardo'],
     pendingRequests: ['user_zuck']
   }
@@ -275,42 +284,90 @@ const INITIAL_SEED_USERS = [
 
 const INITIAL_SEED_POSTS = [
   {
+    id: 'post_manit_1',
+    authorId: 'user_meera_sen',
+    targetUserId: null,
+    content: "Visiting Maulana Azad National Institute of Technology (MANIT) Bhopal today! Beautiful palm trees & campus entrance.",
+    mediaUrl: '/assets/imgs/feed_manit_bhopal.jpg',
+    timestamp: Date.now() - 3600000 * 0.1,
+    likes: ['user_zuck', 'user_akshima', 'user_eduardo'],
+    comments: [
+      {
+        id: 'c_m1',
+        authorId: 'user_akshima',
+        content: 'The campus architecture looks grand and impressive Meera!',
+        timestamp: Date.now() - 3600000 * 0.05
+      }
+    ]
+  },
+  {
+    id: 'post_moonlight_1',
+    authorId: 'user_akshima',
+    targetUserId: null,
+    content: "Full moon reflection over the lake waters tonight. Nature is breathtaking! 🌕🌊",
+    mediaUrl: '/assets/imgs/feed_moonlight_lake.jpg',
+    timestamp: Date.now() - 3600000 * 0.3,
+    likes: ['user_meera_sen', 'user_zuck', 'user_eduardo'],
+    comments: [
+      {
+        id: 'c_ml1',
+        authorId: 'user_meera_sen',
+        content: 'Stunning night view Akshima! The moon glow on the water is magic.',
+        timestamp: Date.now() - 3600000 * 0.2
+      }
+    ]
+  },
+  {
+    id: 'post_samurai_1',
+    authorId: 'user_zuck',
+    targetUserId: null,
+    content: "Minimalist ink sketch artwork of Musashi & the butterfly. 'Do nothing that is of no use.'",
+    mediaUrl: '/assets/imgs/feed_samurai_art.jpg',
+    timestamp: Date.now() - 3600000 * 0.6,
+    likes: ['user_sean', 'user_meera_sen', 'user_eduardo'],
+    comments: [
+      {
+        id: 'c_s1',
+        authorId: 'user_sean',
+        content: 'Powerful quote Mark. Focus on what truly matters!',
+        timestamp: Date.now() - 3600000 * 0.5
+      }
+    ]
+  },
+  {
+    id: 'post_park_1',
+    authorId: 'user_meera_sen_2',
+    targetUserId: null,
+    content: "Quiet afternoon break at the botanical garden park! Love the blue bench seating & snake wall art.",
+    mediaUrl: '/assets/imgs/feed_park_benches.jpg',
+    timestamp: Date.now() - 3600000 * 0.9,
+    likes: ['user_meera_sen', 'user_akshima'],
+    comments: []
+  },
+  {
+    id: 'post_flute_1',
+    authorId: 'user_meera_sharma',
+    targetUserId: null,
+    content: "Exquisite wall painting of a maiden playing flute on rocks under autumn leaves.",
+    mediaUrl: '/assets/imgs/feed_flute_painting.jpg',
+    timestamp: Date.now() - 3600000 * 1.2,
+    likes: ['user_meera_sen', 'user_akshima', 'user_eduardo'],
+    comments: []
+  },
+  {
     id: 'post_zuck_2',
     authorId: 'user_zuck',
     targetUserId: null,
     content: "Just reached 100 million active users on Facebook! Thank you to all our users around the world for making this possible.",
     mediaUrl: '/assets/imgs/globe.png',
-    timestamp: Date.now() - 3600000 * 0.2,
+    timestamp: Date.now() - 3600000 * 1.5,
     likes: ['user_meera_sen', 'user_eduardo', 'user_sean', 'user_dustin', 'user_akshima'],
     comments: [
       {
         id: 'c_z3',
         authorId: 'user_meera_sen',
         content: 'Congratulations Mark! Milestone achieved! 🎉',
-        timestamp: Date.now() - 3600000 * 0.1
-      }
-    ]
-  },
-  {
-    id: 'post_zuck_1',
-    authorId: 'user_zuck',
-    targetUserId: null,
-    content: "Excited to announce Facebook Connect! Now you can connect your identity across the web seamlessly.",
-    mediaUrl: '/assets/imgs/globe.png',
-    timestamp: Date.now() - 3600000 * 0.5,
-    likes: ['user_meera_sen', 'user_eduardo', 'user_sean', 'user_akshima'],
-    comments: [
-      {
-        id: 'c_z1',
-        authorId: 'user_sean',
-        content: 'This is going to transform the social graph forever!',
-        timestamp: Date.now() - 3600000 * 0.4
-      },
-      {
-        id: 'c_z2',
-        authorId: 'user_meera_sen',
-        content: 'Awesome innovation Mark!',
-        timestamp: Date.now() - 3600000 * 0.3
+        timestamp: Date.now() - 3600000 * 1.4
       }
     ]
   },
@@ -320,26 +377,16 @@ const INITIAL_SEED_POSTS = [
     targetUserId: null,
     content: "Family",
     mediaUrl: '/assets/imgs/meera_1.jpg',
-    timestamp: Date.now() - 3600000 * 1,
+    timestamp: Date.now() - 3600000 * 2,
     likes: ['user_zuck', 'user_akshima', 'user_eduardo'],
     comments: [
       {
         id: 'cm_1',
         authorId: 'user_akshima',
         content: 'Such a joyful photo Meera!',
-        timestamp: Date.now() - 3600000 * 0.8
+        timestamp: Date.now() - 3600000 * 1.8
       }
     ]
-  },
-  {
-    id: 'post_meera_sen_2_1',
-    authorId: 'user_meera_sen_2',
-    targetUserId: null,
-    content: "Finishing the blueprint draft for the eco-friendly city park project! 📐🌿",
-    mediaUrl: '/assets/imgs/1.jpg',
-    timestamp: Date.now() - 3600000 * 1.8,
-    likes: ['user_meera_sen', 'user_akshima'],
-    comments: []
   },
   {
     id: 'post_eduardo_1',
@@ -347,25 +394,8 @@ const INITIAL_SEED_POSTS = [
     targetUserId: null,
     content: "Reviewing our Q3 financial growth metrics. User registration numbers are soaring across college networks!",
     mediaUrl: '/assets/imgs/2.jpg',
-    timestamp: Date.now() - 3600000 * 2,
+    timestamp: Date.now() - 3600000 * 3,
     likes: ['user_zuck', 'user_meera_sen'],
-    comments: [
-      {
-        id: 'c_e1',
-        authorId: 'user_zuck',
-        content: 'Great work Eduardo. Let us review the server budget numbers tomorrow.',
-        timestamp: Date.now() - 3600000 * 1.5
-      }
-    ]
-  },
-  {
-    id: 'post_meera_sen_3_1',
-    authorId: 'user_meera_sen_3',
-    targetUserId: null,
-    content: "Lab results are finally in! Genomic sequence analysis completed successfully today.",
-    mediaUrl: '/assets/imgs/2.jpg',
-    timestamp: Date.now() - 3600000 * 2.8,
-    likes: ['user_meera_sen'],
     comments: []
   },
   {
@@ -374,7 +404,7 @@ const INITIAL_SEED_POSTS = [
     targetUserId: null,
     content: "Classes Started",
     mediaUrl: '/assets/imgs/meera_2.jpg',
-    timestamp: Date.now() - 3600000 * 3.5,
+    timestamp: Date.now() - 3600000 * 4,
     likes: ['user_eduardo'],
     comments: []
   },
@@ -384,45 +414,8 @@ const INITIAL_SEED_POSTS = [
     targetUserId: null,
     content: "Finalizing retro UI component designs for the news feed and profile walls! ✨💻",
     mediaUrl: '/assets/imgs/5.jpg',
-    timestamp: Date.now() - 3600000 * 4.5,
-    likes: ['user_meera_sen', 'user_zuck'],
-    comments: [
-      {
-        id: 'c_ak1',
-        authorId: 'user_meera_sen',
-        content: 'The 2007 blue navbar aesthetic looks amazing Akshima!',
-        timestamp: Date.now() - 3600000 * 4
-      }
-    ]
-  },
-  {
-    id: 'post_meera_deshmukh_1',
-    authorId: 'user_meera_deshmukh',
-    targetUserId: null,
-    content: "Writing a weekend feature story on the evolution of digital social networking.",
-    mediaUrl: '/assets/imgs/5.jpg',
     timestamp: Date.now() - 3600000 * 5,
-    likes: ['user_meera_sen', 'user_akshima'],
-    comments: []
-  },
-  {
-    id: 'post_meera_kapoor_1',
-    authorId: 'user_meera_kapoor',
-    targetUserId: null,
-    content: "Selecting fabric textures & colors for the upcoming autumn fashion week collection!",
-    mediaUrl: '/assets/imgs/3.jpg',
-    timestamp: Date.now() - 3600000 * 5.5,
-    likes: ['user_akshima'],
-    comments: []
-  },
-  {
-    id: 'post_meera_sharma_1',
-    authorId: 'user_meera_sharma',
-    targetUserId: null,
-    content: "Choreography practice for the upcoming inter-state classical dance festival!",
-    mediaUrl: '/assets/imgs/wall.jpg',
-    timestamp: Date.now() - 3600000 * 6.2,
-    likes: ['user_meera_sen'],
+    likes: ['user_meera_sen', 'user_zuck'],
     comments: []
   },
   {
@@ -436,26 +429,6 @@ const INITIAL_SEED_POSTS = [
     comments: []
   },
   {
-    id: 'post_dustin_1',
-    authorId: 'user_dustin',
-    targetUserId: null,
-    content: "Upgraded our database caching layer to handle 10x query traffic. Zero downtime deployment!",
-    mediaUrl: '/assets/imgs/4.jpg',
-    timestamp: Date.now() - 3600000 * 8,
-    likes: ['user_zuck', 'user_sean'],
-    comments: []
-  },
-  {
-    id: 'post_meera_nair_1',
-    authorId: 'user_meera_nair',
-    targetUserId: null,
-    content: "Location scouting in the hills for our upcoming independent documentary series 📽️✨",
-    mediaUrl: '/assets/imgs/globe.png',
-    timestamp: Date.now() - 3600000 * 9,
-    likes: ['user_meera_sen'],
-    comments: []
-  },
-  {
     id: 'post_meera_4',
     authorId: 'user_meera_sen',
     targetUserId: null,
@@ -463,26 +436,6 @@ const INITIAL_SEED_POSTS = [
     mediaUrl: '/assets/imgs/meera_4.jpg',
     timestamp: Date.now() - 3600000 * 10,
     likes: ['user_zuck', 'user_eduardo'],
-    comments: []
-  },
-  {
-    id: 'post_meera_roy_1',
-    authorId: 'user_meera_roy',
-    targetUserId: null,
-    content: "Testing microservice resilience and distributed cloud clustering performance.",
-    mediaUrl: '/assets/imgs/4.jpg',
-    timestamp: Date.now() - 3600000 * 11,
-    likes: ['user_dustin', 'user_zuck'],
-    comments: []
-  },
-  {
-    id: 'post_sean_1',
-    authorId: 'user_sean',
-    targetUserId: null,
-    content: "Drop the 'The' from 'The Facebook'. Just Facebook. It's cleaner.",
-    mediaUrl: null,
-    timestamp: Date.now() - 3600000 * 12,
-    likes: ['user_zuck', 'user_dustin'],
     comments: []
   }
 ];
@@ -493,10 +446,10 @@ const INITIAL_SEED_NOTIFICATIONS = [
     userId: 'user_meera_sen',
     actorId: 'user_zuck',
     type: 'like',
-    message: 'Mark Zuckerberg liked your photo "Lunch Break".',
+    message: 'Mark Zuckerberg liked your photo "MANIT Bhopal Campus".',
     read: false,
     timestamp: Date.now() - 1800000,
-    targetId: 'post_meera_4'
+    targetId: 'post_manit_1'
   }
 ];
 
